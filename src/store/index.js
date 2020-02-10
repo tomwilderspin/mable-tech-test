@@ -21,7 +21,6 @@ export default new Vuex.Store({
     },
     SET_SELECTED_USER(state, user) {
       state.selectedUser = user;
-      console.log(user);
     },
   },
   actions: {
@@ -34,8 +33,7 @@ export default new Vuex.Store({
           }
           context.commit('SET_LOADING_STATUS', false);
         })
-        .catch(error => {
-          console.error('error when getting users', error);
+        .catch(() => {
           context.commit('SET_LOADING_STATUS', false);
         });
     },
@@ -44,12 +42,12 @@ export default new Vuex.Store({
       services.getUser(userName)
         .then(user => {
           if (user) {
+            console.log(user);
             context.commit('SET_SELECTED_USER', user);
           }
           context.commit('SET_LOADING_STATUS', false);
         })
-        .catch(error => {
-          console.error('error getting user data', error);
+        .catch(() => {
           context.commit('SET_LOADING_STATUS', false);
         });
     },

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <title-bar class="nav" titleText="Github Search"/>
-    <router-view class="mt-5"/>
+    <router-view/>
   </div>
 </template>
 

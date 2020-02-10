@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <b-container class="mt-3">
     <b-row>
       <b-col>
         <github-logo class="mb-4"/>
