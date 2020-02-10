@@ -33,7 +33,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  border: 4px solid black;
+  border: 2px solid rgb(206, 203, 203);
   border-radius: 6px;
   max-width: 126px;
   cursor: pointer;
