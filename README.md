@@ -1,6 +1,6 @@
 # mable-tech-test
 
-<img src="./screenshot.png" alt="App screenshot" style="width:200px;"/>
+<img src="./screenshot.png" width="200">
 
 Created with vue cli.
 
