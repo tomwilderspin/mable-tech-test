@@ -1,18 +1,19 @@
 <template>
   <div class="d-flex justify-content-center w-100">
     <b-col class="d-flex flex-wrap justify-content-center">
-      <p v-if="activityList.length === 0">No Activity</p>
+      <p v-if="repoList.length === 0">No Repos</p>
       <b-card
-        v-for="(activity, index) in activityList"
+        v-for="(repo, index) in repoList"
         :key="index"
-        :header="`Event: ${activity.type}`"
+        :header="repo.name"
         class="m-2 card-item"
         border-variant="dark"
         header-bg-variant="light"
         align="center"
       >
-        <p>Repository</p>
-        <p>{{ activity.repo.name }}</p>
+        <p>Stars: {{repo.stargazers_count}}</p>
+        <p>Issues: {{ repo.open_issues }}</p>
+        <p>Forks: {{ repo.forks }}</p>
       </b-card>
     </b-col>
   </div>
@@ -20,9 +21,9 @@
 
 <script>
 export default {
-  name: 'ActivitiesList',
+  name: 'RepoList',
   props: {
-    activityList: {
+    repoList: {
       type: Array,
       required: true,
     },
@@ -32,6 +33,7 @@ export default {
 
 <style lang="scss" scoped>
 .card-item {
-  max-width: 250px;
+  width: 250px;
+
 }
 </style>

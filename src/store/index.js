@@ -10,8 +10,9 @@ export default new Vuex.Store({
   state: {
     loadingUsers: false,
     users: [],
-    userRepos: {},
-    userActivities: {},
+    userRepos: [],
+    userActivities: [],
+    userStars: [],
     selectedUser: null,
   },
   mutations: {
@@ -24,9 +25,14 @@ export default new Vuex.Store({
     SET_SELECTED_USER(state, user) {
       state.selectedUser = user;
     },
-    ADD_USER_ACTIVITY(state, activityData) {
-      const { userName, activities } = activityData;
-      state.userActivities[userName] = activities;
+    ADD_USER_ACTIVITY(state, activities) {
+      state.userActivities = activities;
+    },
+    ADD_USER_REPOS(state, repos) {
+      state.userRepos = repos;
+    },
+    ADD_USER_STARS(state, stars) {
+      state.userStars = stars;
     },
   },
   actions: {
@@ -60,7 +66,23 @@ export default new Vuex.Store({
       services.getUserLatestActivity(userName)
         .then(activities => {
           if (activities) {
-            context.commit('ADD_USER_ACTIVITY', { userName, activities });
+            context.commit('ADD_USER_ACTIVITY', activities);
+          }
+        });
+    },
+    getUserRepos(context, userName) {
+      services.getUserRepos(userName)
+        .then(repos => {
+          if (repos) {
+            context.commit('ADD_USER_REPOS', repos);
+          }
+        });
+    },
+    getUserStarred(context, userName) {
+      services.getUserStarred(userName)
+        .then(stars => {
+          if (stars) {
+            context.commit('ADD_USER_STARS', stars);
           }
         });
     },

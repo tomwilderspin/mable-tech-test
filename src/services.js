@@ -22,4 +22,22 @@ function getUserLatestActivity(userName) {
     .catch(() => null);
 }
 
-export default { searchUsers, getUser, getUserLatestActivity };
+function getUserRepos(userName) {
+  return client.get(`/users/${userName}/repos`)
+    .then(result => result.data)
+    .catch(() => null);
+}
+
+function getUserStarred(userName) {
+  return client.get(`/users/${userName}/starred`)
+    .then(result => result.data)
+    .catch(() => null);
+}
+
+export default {
+  searchUsers,
+  getUser,
+  getUserLatestActivity,
+  getUserRepos,
+  getUserStarred,
+};

@@ -1,18 +1,19 @@
 <template>
   <div class="d-flex justify-content-center w-100">
     <b-col class="d-flex flex-wrap justify-content-center">
-      <p v-if="activityList.length === 0">No Activity</p>
+      <p v-if="starsList.length === 0">No Starred Repos</p>
       <b-card
-        v-for="(activity, index) in activityList"
+        v-for="(star, index) in starsList"
         :key="index"
-        :header="`Event: ${activity.type}`"
+        :header="star.full_name"
         class="m-2 card-item"
         border-variant="dark"
         header-bg-variant="light"
         align="center"
       >
-        <p>Repository</p>
-        <p>{{ activity.repo.name }}</p>
+        <p>{{ star.description }}</p>
+        <p>Owner: {{ star.owner.login }}</p>
+        <p>Stars: {{ star.stargazers_count }}</p>
       </b-card>
     </b-col>
   </div>
@@ -20,9 +21,9 @@
 
 <script>
 export default {
-  name: 'ActivitiesList',
+  name: 'StarredList',
   props: {
-    activityList: {
+    starsList: {
       type: Array,
       required: true,
     },

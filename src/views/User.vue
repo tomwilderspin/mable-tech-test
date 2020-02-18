@@ -54,11 +54,15 @@
 import { mapState } from 'vuex';
 
 import ActivitiesList from '../components/user/ActivitiesList.vue';
+import RepoList from '../components/user/RepoList.vue';
+import StarredList from '../components/user/StarredList.vue';
 
 export default {
   name: 'User',
   components: {
     ActivitiesList,
+    RepoList,
+    StarredList,
   },
   data() {
     return {
@@ -72,9 +76,15 @@ export default {
   },
   watch: {
     selectedOption(option) {
+      const { id = '' } = this.$route.params;
       if (option === 'activities') {
-        const { id = '' } = this.$route.params;
         this.$store.dispatch('getUserLastestActivities', id);
+      }
+      if (option === 'repos') {
+        this.$store.dispatch('getUserRepos', id);
+      }
+      if (option === 'stars') {
+        this.$store.dispatch('getUserStarred', id);
       }
     },
   },
@@ -82,19 +92,24 @@ export default {
     ...mapState({
       user: state => state.selectedUser,
       usersActivities: state => state.userActivities,
+      usersRepos: state => state.userRepos,
+      usersStars: state => state.userStars,
     }),
     currentListComponentProps() {
       if (this.selectedOption === 'activities') {
-        const { [this.user.login]: list = [] } = this.usersActivities;
         return {
-          activityList: list,
+          activityList: this.usersActivities,
         };
       }
       if (this.selectedOption === 'repos') {
-        return {};
+        return {
+          repoList: this.usersRepos,
+        };
       }
       if (this.selectedOption === 'stars') {
-        return {};
+        return {
+          starsList: this.usersStars,
+        };
       }
       return {};
     },
@@ -103,10 +118,10 @@ export default {
         return 'ActivitiesList';
       }
       if (this.selectedOption === 'repos') {
-        return 'ReposList';
+        return 'RepoList';
       }
       if (this.selectedOption === 'stars') {
-        return 'StarsList';
+        return 'StarredList';
       }
       return 'ActivitiesList';
     },
@@ -136,6 +151,7 @@ export default {
 }
 .row-items {
   max-width: 400px;
+  cursor: pointer;
 }
 .active {
   border-bottom: .5px solid rgb(182, 180, 180);
