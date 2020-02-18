@@ -1,4 +1,7 @@
 # mable-tech-test
+
+<img src="./screenshot.png" alt="App screenshot" style="width:200px;"/>
+
 Created with vue cli.
 
 Includes: 
@@ -6,6 +9,7 @@ Includes:
  - Router
  - PWA stuff
  - Webpack route split bundles
+ - BootstrapVue
 
 Example of The Mable Dev tech test given to applicants. Uses the Github API to search for users and return basic useer info (activity, repos, stars).
 
