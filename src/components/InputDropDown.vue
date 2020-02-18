@@ -1,6 +1,6 @@
 <template>
   <b-input-group class="mt-3">
-    <b-form-input v-model="inputText" :placeholder="placeholderText"></b-form-input>
+    <b-form-input v-model="inputText" :placeholder="placeholderText" @keyup.enter="onClick"/>
     <b-input-group-append>
       <b-button variant="success" @click="onClick">Search</b-button>
     </b-input-group-append>

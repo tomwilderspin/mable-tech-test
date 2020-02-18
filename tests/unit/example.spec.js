@@ -1,12 +1,12 @@
 import { shallowMount } from '@vue/test-utils';
-import HelloWorld from '@/components/HelloWorld.vue';
+import TitleBar from '@/components/TitleBar.vue';
 
-describe('HelloWorld.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'new message';
-    const wrapper = shallowMount(HelloWorld, {
-      propsData: { msg },
+describe('TitleBar.vue', () => {
+  it('renders props.titleText when passed', () => {
+    const title = 'Demo Title';
+    const wrapper = shallowMount(TitleBar, {
+      propsData: { titleText: title },
     });
-    expect(wrapper.text()).toMatch(msg);
+    expect(wrapper.contains('h1')).toBe(true);
   });
 });

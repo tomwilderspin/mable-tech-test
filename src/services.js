@@ -16,4 +16,10 @@ function searchUsers(searchTerm) {
     .catch(() => null);
 }
 
-export default { searchUsers, getUser };
+function getUserLatestActivity(userName) {
+  return client.get(`/users/${userName}/received_events`)
+    .then(result => result.data)
+    .catch(() => null);
+}
+
+export default { searchUsers, getUser, getUserLatestActivity };

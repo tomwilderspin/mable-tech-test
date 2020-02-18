@@ -10,6 +10,8 @@ export default new Vuex.Store({
   state: {
     loadingUsers: false,
     users: [],
+    userRepos: {},
+    userActivities: {},
     selectedUser: null,
   },
   mutations: {
@@ -21,6 +23,10 @@ export default new Vuex.Store({
     },
     SET_SELECTED_USER(state, user) {
       state.selectedUser = user;
+    },
+    ADD_USER_ACTIVITY(state, activityData) {
+      const { userName, activities } = activityData;
+      state.userActivities[userName] = activities;
     },
   },
   actions: {
@@ -42,7 +48,6 @@ export default new Vuex.Store({
       services.getUser(userName)
         .then(user => {
           if (user) {
-            console.log(user);
             context.commit('SET_SELECTED_USER', user);
           }
           context.commit('SET_LOADING_STATUS', false);
@@ -51,6 +56,13 @@ export default new Vuex.Store({
           context.commit('SET_LOADING_STATUS', false);
         });
     },
-
+    getUserLastestActivities(context, userName) {
+      services.getUserLatestActivity(userName)
+        .then(activities => {
+          if (activities) {
+            context.commit('ADD_USER_ACTIVITY', { userName, activities });
+          }
+        });
+    },
   },
 });
