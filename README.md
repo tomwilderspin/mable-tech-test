@@ -1,4 +1,17 @@
 # mable-tech-test
+Created with vue cli.
+
+Includes: 
+ - Vuex store
+ - Router
+ - PWA stuff
+ - Webpack route split bundles
+
+Example of The Mable Dev tech test given to applicants. Uses the Github API to search for users and return basic useer info (activity, repos, stars).
+
+Taken around 3.5(ish) hrs in total.
+
+Missing a few bits: Auth header on requests, tests for components, transitions between, error feedback to user.
 
 ## Project setup
 ```
@@ -24,6 +37,3 @@ npm run test:unit
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
